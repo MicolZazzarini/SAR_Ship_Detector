@@ -1,0 +1,15 @@
+Dataset/
+.idea/
+.env
+/YoloV10/yolov10/
+/inference/yolov10/
+/**/**/venv_yolov8
+/**/**/yolov10
+/**/**/img
+/**/**/env10
+/**/**/weights
+/**/**/results
+/**/**/pytorch-grad-cam_b
+YoloV10/ade_setup.py
+YoloV8/ade_setup.py
+YoloV5/ade_setup.py
