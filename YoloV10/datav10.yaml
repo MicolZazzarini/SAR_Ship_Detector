@@ -1,0 +1,8 @@
+path: .
+train: /app/ultralytics/data_CV_all/images/train
+val: /app/ultralytics/data_CV_all/images/val
+test: /app/ultralytics/data_CV_all/images/test
+
+nc: 1
+
+names: ['ship']

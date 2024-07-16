@@ -1,0 +1,17 @@
+settings_version: 0.0.4
+datasets_dir: /app/ultralytics/data_CV_all
+weights_dir: /app/ultralytics/output/weights
+runs_dir: /app/ultralytics/output
+uuid: 88e4330cbbd855056c7bd876848e91ddc07b4291ec9fb4bc832331e05ed9ac02
+sync: true
+api_key: ''
+openai_api_key: ''
+clearml: true
+comet: true
+dvc: true
+hub: true
+mlflow: true
+neptune: true
+raytune: true
+tensorboard: true
+wandb: true
