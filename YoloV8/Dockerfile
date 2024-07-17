@@ -1,6 +1,6 @@
 FROM nvidia/cuda:11.6.2-devel-ubuntu20.04
 
-LABEL authors="Andrea Fiorani"
+LABEL authors="Andrea Fiorani Micol Zazzarini"
 
 # Aggiorna e installa le dipendenze di base
 RUN apt-get update && \
