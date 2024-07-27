@@ -1,0 +1,4 @@
+../../SAR_Ship_Detector/YoloV10/.env
+.dockerignore
+Dockerfile
+data_CV_1000
