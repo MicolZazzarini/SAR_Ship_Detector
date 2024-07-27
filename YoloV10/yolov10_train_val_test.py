@@ -80,6 +80,8 @@ def main():
         save_json=True
     )
 
+
+
     # Test model
     model.val(
         task='detect',
@@ -93,13 +95,11 @@ def main():
         save_json=True
     )
 
-    # Define the output directory for the emissions data
-    output_directory = f"output/CO2/{train_name}"
-    os.makedirs(output_directory, exist_ok=True)
-
-    # Stop the emissions tracker and save the data
     try:
         emissions_data = tracker.stop()
+        # Define the output directory for the emissions data
+        output_directory = f"output/CO2/{train_name}"
+        os.makedirs(output_directory, exist_ok=True)
         output_file = os.path.join(output_directory, f"{train_name}_emissions.csv")
         emissions_df = pd.DataFrame([emissions_data])
         emissions_df.to_csv(output_file, index=False)

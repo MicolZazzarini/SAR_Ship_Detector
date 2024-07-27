@@ -75,7 +75,7 @@ COPY settings.yaml /root/.config/yolov5/settings.yaml
 WORKDIR /app/ultralytics/
 
 COPY datav10.yaml /app/ultralytics/
-COPY ade_setup.py /app/ultralytics/
+#COPY ade_setup.py /app/ultralytics/
 
 VOLUME /app/output
 
@@ -85,9 +85,9 @@ RUN git clone https://github.com/THU-MIG/yolov10.git && \
     python3.9 -m pip install -r requirements.txt && \
     python3.9 -m pip install -e .
 
-COPY ship_dataset_v0/ /app/ultralytics/ship_dataset_v0/
+#COPY ship_dataset_v0/ /app/ultralytics/ship_dataset_v0/
 
-RUN python3.9 ade_setup.py ship_dataset_v0/ data_CV_all/
+# RUN python3.9 ade_setup.py ship_dataset_v0/ data_CV_all/
 
 COPY yolov10_train_val_test.py /app/ultralytics/
 
