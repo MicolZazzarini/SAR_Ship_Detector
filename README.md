@@ -6,8 +6,9 @@
 3. [Datasets](#datasets)
 4. [Getting Started with Docker ( Training )](#Getting-Started-with-Docker)
 5. [Getting Started with Notebook ( Inference )](#Getting-Started-with-Notebook)
-6. [Contributing](#contributing)
-7. [License](#license)
+6. [YOLOvs8 Training and Inference Optimization Notebook](#YOLOv8-Training-and-Inference-Optimization-Notebook)
+7. [Contributing](#contributing)
+8. [License](#license)
 
 ---
 ## Introduction
@@ -156,6 +157,157 @@ docker stop yolov8-container-ID
 
 ---
 ## Getting Started with Notebook
+
+## YOLOv8 Training and Inference Optimization Notebook
+
+This repository contains a Google Colab notebook demonstrating how to train a YOLOv8 model on a custom dataset, perform inference, and optimize the model using TensorRT for faster inference. The notebook follows these steps:
+1. Mount Google Drive
+2. Set up the YOLOv8 environment
+3. Train YOLOv8 models (original and modified)
+4. Perform inference with trained models
+5. Optimize the YOLOv8 model using TensorRT
+6. Perform inference with the TensorRT-optimized model
+
+### Dataset Structure
+
+The dataset should be organized in the following structure:
+```
+dataset/
+├── images/
+│ ├── train/
+│ ├── val/
+│ └── test/
+└── labels/
+├── train/
+├── val/
+└── test/
+ ```
+### Overview
+
+#### Training the Original YOLOv8 Model
+
+The original YOLOv8 model architecture is used to train the model on the dataset. This model is designed for general object detection tasks.
+
+#### Optimizing YOLOv8 for Small Objects
+
+To optimize the YOLOv8 model for detecting small objects, certain layers in the architecture are removed. This modification helps in focusing the model's capacity on smaller scales of the input image, making it more efficient in detecting small objects.
+
+##### Original YOLOv8 Architecture
+
+![Original YOLOv8 Architecture](https://www.stunningvisionai.com/course/yolov8-architecture.png)
+
+##### Modified YOLOv8 Architecture for Small Objects
+
+The following diagram shows the modifications made to the YOLOv8 architecture to better handle small object detection:
+
+![Modified YOLOv8 Architecture for Small Objects](https://www.stunningvisionai.com/course/yolov8-architecture-modification-for-small-object.png)
+
+##### Final YOLOv8 Architecture for Small Objects
+
+![Final YOLOv8 Architecture for Small Objects](https://www.stunningvisionai.com/course/yolov8-architecture-for-small-object.png)
+
+#### YOLOv8 Configuration for Small Objects
+
+The following is the YOLOv8 architecture configuration file modified for detecting small objects, where unnecessary layers are commented out:
+
+```yaml
+# Ultralytics YOLO 🚀, AGPL-3.0 license
+# YOLOv8 object detection model with P3-P5 outputs. For Usage examples see https://docs.ultralytics.com/tasks/detect
+
+# Parameters
+nc: 80 # number of classes
+#scales: # model compound scaling constants, i.e. 'model=yolov8n.yaml' will call yolov8.yaml with scale 'n'
+#  # [depth, width, max_channels]
+#  n: [0.33, 0.25, 1024] # YOLOv8n summary: 225 layers,  3157200 parameters,  3157184 gradients,   8.9 GFLOPs
+#  s: [0.33, 0.50, 1024] # YOLOv8s summary: 225 layers, 11166560 parameters, 11166544 gradients,  28.8 GFLOPs
+#  m: [0.67, 0.75, 768] # YOLOv8m summary: 295 layers, 25902640 parameters, 25902624 gradients,  79.3 GFLOPs
+#  l: [1.00, 1.00, 512] # YOLOv8l summary: 365 layers, 43691520 parameters, 43691504 gradients, 165.7 GFLOPs
+#  x: [1.00, 1.25, 512] # YOLOv8x summary: 365 layers, 68229648 parameters, 68229632 gradients, 258.5 GFLOPs
+
+depth_multiple: 0.33
+width_multiple: 0.50
+max_channels: 1024
+
+# YOLOv8.0n backbone
+backbone:
+  # [from, repeats, module, args]
+  - [-1, 1, Conv, [64, 3, 2]] # 0-P1/2
+  - [-1, 1, Conv, [128, 3, 2]] # 1-P2/4
+  - [-1, 3, C2f, [128, True]]
+  - [-1, 1, Conv, [256, 3, 2]] # 3-P3/8
+  - [-1, 6, C2f, [256, True]]
+  - [-1, 1, Conv, [512, 3, 2]] # 5-P4/16
+  - [-1, 6, C2f, [512, True]]
+#  - [-1, 1, Conv, [1024, 3, 2]] # 7-P5/32
+#  - [-1, 3, C2f, [1024, True]]
+  - [-1, 1, SPPF, [1024, 5]] # 9 -> 7
+
+# YOLOv8.0n head
+head:
+#  - [-1, 1, nn.Upsample, [None, 2, "nearest"]]
+#  - [[-1, 6], 1, Concat, [1]] # cat backbone P4
+#  - [-1, 3, C2f, [512]] # 12
+
+  - [-1, 1, nn.Upsample, [None, 2, "nearest"]]
+  - [[-1, 4], 1, Concat, [1]] # cat backbone P3
+  - [-1, 3, C2f, [256]] # 15 (P3/8-small) -> 10
+
+#  - [-1, 1, Conv, [256, 3, 2]]
+#  - [[-1, 12], 1, Concat, [1]] # cat head P4
+#  - [-1, 3, C2f, [512]] # 18 (P4/16-medium)
+
+#  - [-1, 1, Conv, [512, 3, 2]]
+#  - [[-1, 9], 1, Concat, [1]] # cat head P5
+#  - [-1, 3, C2f, [1024]] # 21 (P5/32-large)
+
+  - [[10], 1, Detect, [nc]] # Detect(P3, P4, P5)
+```
+
+### TensorRT Optimization
+
+#### What is TensorRT?
+
+TensorRT is a deep learning inference optimizer and runtime library developed by NVIDIA. It is designed to deliver high-performance deep learning inference, leveraging NVIDIA GPUs. TensorRT takes a trained model and optimizes it for inference by performing layer fusion, precision calibration, kernel auto-tuning, and other optimizations to accelerate the inference process.
+
+#### Benefits of TensorRT Optimization
+
+- **Increased Throughput**: By optimizing the model, TensorRT can significantly increase the number of inferences per second.
+- **Reduced Latency**: Optimizations reduce the time taken for each inference, making real-time applications more responsive.
+- **Lower Power Consumption**: Efficient use of GPU resources can lead to reduced power consumption, which is crucial for edge devices.
+
+#### How to Optimize YOLOv8 with TensorRT
+
+In the notebook, we demonstrate how to convert a trained YOLOv8 model to a TensorRT engine. The process involves:
+
+1. Installing necessary libraries: `tensorrt`, `onnx`, `onnxsim`, and `onnxruntime-gpu`.
+2. Exporting the YOLOv8 model to ONNX format.
+3. Converting the ONNX model to a TensorRT engine.
+
+The following code snippets in the notebook perform these steps:
+
+```python
+# Install required libraries
+!pip install tensorrt tensorrt_lean tensorrt_dispatch
+!pip install onnx onnxsim onnxruntime-gpu
+
+# Static variable for TensorRT export
+EXPORT_NAME = 'runs/detect/yolov8_ships_small/weights/best.pt'
+
+# Export YOLOv8 Model to TensorRT
+!yolo export model={EXPORT_NAME} format=engine half=True device=0
+```
+### Running the Notebook
+
+1. Clone this repository or download the notebook.
+2. Open the notebook in Google Colab.
+3. Follow the steps in the notebook to mount your Google Drive, set up the YOLOv8 environment, and train the models.
+4. Perform inference and visualize the results.
+5. Optimize the model using TensorRT and perform inference with the optimized model.
+
+### Acknowledgments
+
+This work leverages the [Ultralytics YOLOv8](https://github.com/ultralytics/ultralytics) repository and the related documentation. For additional insights and performance improvement techniques, you may also find the [YOLO Performance Improvement Masterclass on Udemy](https://www.udemy.com/course/yolo-performance-improvement-masterclass) useful.
+
 
 ---
 ## Contributing
