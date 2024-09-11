@@ -4,15 +4,19 @@
 1. [Introduction](#introduction)
 2. [YOLO Versions Used](#yolo-versions)
 3. [Datasets](#datasets)
-4. [Getting Started with Docker ( Training )](#getting-started)
-5. [Getting Started with Notebook ( Inference )](#Notebook)
+4. [Getting Started with Docker ( Training )](#Getting-Started-with-Docker)
+5. [Getting Started with Notebook ( Inference )](#Getting-Started-with-Notebook)
 6. [Contributing](#contributing)
 7. [License](#license)
 
 ---
 ## Introduction
 
-This repository provides an overview of three versions of the YOLO (You Only Look Once) object detection framework: YOLOv8 and YOLOv10. Additionally, it includes information about two key datasets used for training and evaluation: HRSID and CAESAR Openship 2.0 SAR.
+This repository is designed to provide an overview and guidance on using two versions of the YOLO (You Only Look Once) object detection framework: YOLOv8 and YOLOv10. YOLO is a state-of-the-art deep learning model for object detection, offering real-time detection capabilities across a variety of tasks. YOLOv8 builds on the innovations introduced by YOLOv5, incorporating improved model architecture and optimized detection for smaller objects. YOLOv10 represents the latest advancement in the YOLO series, featuring cutting-edge performance with enhanced training methodologies and support for diverse datasets.
+
+In this project, two key datasets were used: the HRSID dataset, consisting of high-resolution satellite images for ship detection, and the CAESAR Openship 2.0 SAR dataset, which provides a large-scale collection of SAR images. The HRSID dataset was used during the exploratory phase, offering insights into initial detection tasks, while the CAESAR Openship 2.0 SAR dataset was employed for the main training phase to further refine and improve the model's performance.
+
+The repository also includes instructions for setting up the environment, using Docker for training, and utilizing notebooks for inference. Contributions and code modifications are encouraged, and the project is licensed under the MIT License.
 
 ---
 ## YOLO Versions
@@ -27,6 +31,9 @@ YOLOv8 builds upon the advancements of YOLOv5 with further optimizations and new
 - Advanced augmentation techniques
 - Further speed improvements
 
+The code for YOLOv8 was taken from the reference repository [Ultralytics YOLOv8 GitHub Repository](https://github.com/ultralytics/ultralytics).
+
+
 ### YOLOv10
 
 YOLOv10 represents the latest iteration in the YOLO series, featuring cutting-edge improvements in both model architecture and training techniques. This version is designed to provide state-of-the-art performance across a wide range of object detection tasks.
@@ -37,11 +44,21 @@ YOLOv10 represents the latest iteration in the YOLO series, featuring cutting-ed
 - Advanced training methodologies
 - Comprehensive support for diverse datasets
 
+The code for YOLOv10 was taken from the reference repository [YOLOv10 GitHub Repository](https://github.com/THU-MIG/yolov10).
+
+
 ---
-
-
-
 ## Datasets
+
+### HRSID Dataset
+The HRSID (High-Resolution Ship Detection) dataset is used for ship detection tasks, primarily in optical remote sensing images. It consists of 5600 high-resolution satellite images containing ships of various sizes and orientations. This dataset is ideal for an initial exploratory analysis, providing a broad range of ship images in different maritime environments. We used the HRSID dataset during the exploratory phase of our project to gain insights into the ship detection task before moving to more complex datasets.
+
+Repository link: [HRSID GitHub Repository](https://github.com/chaozhong2010/HRSID).
+
+### CAESAR Openship 2.0 SAR Dataset
+The CAESAR Openship 2.0 SAR (Synthetic Aperture Radar) dataset is a large-scale collection of SAR images designed for ship detection and classification. It contains over 80,000 labeled images of ships captured in various conditions, making it suitable for advanced object detection tasks. We used this dataset for the main training phase of our models, as its complexity and detail allowed us to improve accuracy significantly. The SAR data offers resilience to challenging weather conditions, enhancing real-world applicability in maritime ship detection.
+
+Repository link: [CAESAR Openship 2.0 SAR GitHub Repository](https://github.com/CAESAR/Openship-2.0).
 
 ---
 ## Getting Started with Docker
