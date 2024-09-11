@@ -13,6 +13,10 @@ def parse_args():
     parser.add_argument('-e', '--epochs', type=int, default=50, help='number of training epochs')
     parser.add_argument('-b', '--batch_size', type=int, default=16, help='batch size for training')
     parser.add_argument('-o', '--optimizer', type=str, default='Adam', choices=['AdamW', 'Adam', 'SGD'], help='optimizer for training')
+    # momentum
+    # learning rate
+    # past_weigth
+    # save_wieinf
     args = parser.parse_args()
     return args
 
