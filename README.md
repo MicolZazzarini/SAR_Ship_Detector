@@ -2,22 +2,19 @@
 
 ## Table of Contents
 1. [Introduction](#introduction)
-2. [YOLO Versions](#yolo-versions)
-   - [YOLOv8](#yolov8)
-   - [YOLOv10](#yolov10)
-3. [Getting Started](#getting-started)
-   - [Installation](#installation)
-   - [Usage](#usage)
-4. [Datasets](#datasets)
-   - [HRSID](#hrsid)
-   - [CAESAR Openship 2.0 SAR](#caesar-openship-20-sar)
-5. [Contributing](#contributing)
-6. [License](#license)
+2. [YOLO Versions Used](#yolo-versions)
+3. [Datasets](#datasets)
+4. [Getting Started with Docker ( Training )](#getting-started)
+5. [Getting Started with Notebook ( Inference )](#Notebook)
+6. [Contributing](#contributing)
+7. [License](#license)
 
+---
 ## Introduction
 
-This repository provides an overview of three versions of the YOLO (You Only Look Once) object detection framework: YOLOv5, YOLOv8, and YOLOv10. Additionally, it includes information about two key datasets used for training and evaluation: HRSID and CAESAR Openship 2.0 SAR.
+This repository provides an overview of three versions of the YOLO (You Only Look Once) object detection framework: YOLOv8 and YOLOv10. Additionally, it includes information about two key datasets used for training and evaluation: HRSID and CAESAR Openship 2.0 SAR.
 
+---
 ## YOLO Versions
 
 ### YOLOv8
@@ -40,70 +37,117 @@ YOLOv10 represents the latest iteration in the YOLO series, featuring cutting-ed
 - Advanced training methodologies
 - Comprehensive support for diverse datasets
 
-## Getting Started
-
-### Quickstart
-To get started with any of the YOLO versions, you need to install the necessary dependencies. The following instructions will guide you through the installation process.
+---
 
 
-### Usage
-After installing the dependencies, you can start using YOLOv5, YOLOv8, or YOLOv10 for object detection tasks. Below are basic usage examples for each version.
 
+## Datasets
 
-## YOLOv8s
-### Traning
-GPU type: NVIDIA RTX A6000  
-CPU type: Intel(R) Xeon(R) Gold 6254 CPU @ 3.10GHz
-Task: Training detection ship from SAR
+---
+## Getting Started with Docker
 
-| CO2 Kg                | Epoche | Batch Size | Optimizer |
-|-----------------------|--------|------------|-----------|
-| 1.928400235849826     | 200    | 32         | SGD       |
-| 1.8210006887608925    | 200    | 64         | SGD       |
-| 1.726629182765182     | 200    | 128        | AdamW     |
-| 1.72663               | 200    | 128        | SGD       |
-| 2.706262813720201     | 300    | 64         | SGD       |
-| **Totale**            | -      | -          | -         |
-| **9.908922921096101** | -      | -          | -         |
+The procedure described is for YOLOv8. The only difference for YOLOv10 is to start in the YOLOv10 folder.
 
-### Inference img nave_3_rumore.jpg
-CPU type: Intel(R) Core(TM) i7-6700HQ CPU @ 2.60GHz
+### 0. Configuration
 
-| time in s | Epoche | Batch Size | Optimizer |
-|-----------|--------|------------|-----------|
-| 3.2085    | 200    | 32         | SGD       |
-| 3.1526    | 200    | 64         | SGD       |
-| 3.2191    | 200    | 128        | AdamW     |
-| 3.1579    | 200    | 128        | SGD       |
-| 3.1625    | 300    | 64         | SGD       |
+Before starting the process, you need to configure the `.env` file by adding the `WANDB_API_KEY`. This key is necessary for logging and tracking your machine learning experiments with Weights & Biases (WandB).
 
+The `.env` file should look like this:
 
-## YOLOv10s
-### Traning
-GPU type: NVIDIA RTX A6000  
-CPU type: Intel(R) Xeon(R) Gold 6254 CPU @ 3.10GHz
-Task: Training detection ship from SAR
+```dotenv
+WANDB_API_KEY=<api_key>
+```
 
-| CO2 Kg                 | Epoche | Batch Size | Optimizer |
-|------------------------|--------|------------|-----------|
-| 2.3467992712042625     | 200    | 32         | SGD       |
-| 2.225889854361914      | 200    | 64         | SGD       |
-| 2.218272748326967      | 200    | 128        | AdamW     |
-| 2.2214224895266463     | 200    | 128        | SGD       |
-| 3.419242134353886      | 300    | 64         | SGD       |
-| **Totale**             | -      | -          | -         |
-| **12.431626497673677** | -      | -          | -         |
+### 1. Generate Docker image and start the container
+Start by building the Docker image and running the container for YOLOv8.
 
+```bash
+# Build Docker image for YOLOv8
+docker build -t yolov8_image .
 
-### Inference img nave_3_rumore.jpg
-CPU type: Intel(R) Core(TM) i7-6700HQ CPU @ 2.60GHz
+# Run the container with GPU support for YOLOv8
+docker run -it --gpus '"device=2"' --name yolov8-container  --env-file .env -v $(pwd)/output:/app/ultralytics/output yolov8_image /bin/sh
+```
 
-| time in s | Epoche | Batch Size | Optimizer |
-|-----------|--------|------------|-----------|
-|           | 200    | 32         | SGD       |
-|           | 200    | 64         | SGD       |
-|           | 200    | 128        | AdamW     |
-|           | 200    | 128        | SGD       |
-|           | 300    | 64         | SGD       |
+This will create and start the container `yolov8-container`.
 
+### 2. Connect to the running container
+If the container is already running but you need to reconnect to it:
 
+```bash
+# Verify the container is running
+docker ps
+
+# Attach to the YOLOv8 container's shell
+docker attach yolov8-container-ID
+```
+
+### 3. Create a Tmux session to manage long-running processes
+To start managing long-running processes inside the container, create a Tmux session:
+
+```bash
+# Create a new tmux session called 'training'
+tmux new-session -s training
+```
+
+Inside the Tmux session, execute your training script:
+
+```bash
+# Run the YOLOv8 training process
+python3.9 yolov8_train_val_test.py -e 200 -b 32 -o SGD
+```
+
+### 4. Detach from Tmux to keep the process running in the background
+After starting the training, detach from the Tmux session to leave it running in the background:
+
+```bash
+# Detach from the tmux session
+Ctrl + B, then D
+```
+
+### 5. Exit the container without stopping it
+To exit the Docker container without stopping it, use the following command:
+
+```bash
+# Detach from the container
+Ctrl + P, then Ctrl + Q
+```
+
+This will return you to your local terminal while keeping the container and processes running.
+
+### 6. Reattach to the Tmux session for monitoring or modifications
+If you need to check on the training process or make modifications:
+
+```bash
+# Reattach to the YOLOv8 container
+docker attach yolov8-container-ID
+
+# Reattach to the tmux session
+tmux attach-session -t training
+```
+
+### 7. Exit Tmux and stop the container
+Once your work is complete, exit the Tmux session and stop the Docker container:
+
+```bash
+# Exit the tmux session
+Ctrl + B, then exit
+
+# Stop the container from a separate terminal
+docker stop yolov8-container-ID
+```
+
+---
+## Getting Started with Notebook
+
+---
+## Contributing
+
+This project is developed and maintained by the following authors:
+
+- 👩‍💻 [**Zazzarini Micol**](https://github.com/MicolZazzarini)
+- 👨‍💻 [**Fiorani Andrea**](https://github.com/125ade)
+
+---
+## License
+This project is licensed under the [MIT License](LICENSE) - Refer to the [LICENSE](LICENSE) file for more details.
