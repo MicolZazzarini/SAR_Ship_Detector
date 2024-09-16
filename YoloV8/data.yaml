@@ -1,7 +1,8 @@
 path: .
-train: images/train
-val: images/val
-test: images/test
+train: /app/ultralytics/output/data_CV_all/images/train
+val: /app/ultralytics/output/data_CV_all/images/val
+test: /app/ultralytics/output/data_CV_all/images/test
 
-names:
-  0: Ship
+nc: 1
+
+names: ['ship']

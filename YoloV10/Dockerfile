@@ -2,7 +2,6 @@ FROM nvidia/cuda:11.6.2-devel-ubuntu20.04
 
 LABEL authors="Andrea Fiorani"
 
-# Aggiorna e installa le dipendenze di base
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     software-properties-common \
@@ -42,7 +41,6 @@ RUN apt-get update && \
     zip \
     tmux
 
-# Installa Python 3.9 da sorgente
 RUN wget https://www.python.org/ftp/python/3.9.18/Python-3.9.18.tgz && \
     tar xzf Python-3.9.18.tgz && \
     cd Python-3.9.18 && \
@@ -63,7 +61,7 @@ RUN python3.9 -m pip install torchvision==0.13.1+cu116 --extra-index-url https:/
 
 RUN apt-get install -y g++-7 && apt-get install -y libstdc++6
 
-RUN python3.9 -m pip install wandb python-dotenv codecarbon scikit-learn matplotlib opencv-python-headless
+RUN python3.9 -m pip install wandb python-dotenv codecarbon scikit-learn matplotlib opencv-python-headless ttach
 
 WORKDIR /app
 
@@ -75,39 +73,15 @@ COPY settings.yaml /root/.config/yolov5/settings.yaml
 WORKDIR /app/ultralytics/
 
 COPY datav10.yaml /app/ultralytics/
-#COPY ade_setup.py /app/ultralytics/
+COPY YOLOv10sCustom.yaml /app/ultralytics/
 
 VOLUME /app/output
 
-# per la Yolov10
 RUN git clone https://github.com/THU-MIG/yolov10.git && \
     cd yolov10 && \
     python3.9 -m pip install -r requirements.txt && \
     python3.9 -m pip install -e .
 
-#COPY ship_dataset_v0/ /app/ultralytics/ship_dataset_v0/
+COPY yolov10_tuning.py /app/ultralytics/
 
-# RUN python3.9 ade_setup.py ship_dataset_v0/ data_CV_all/
-
-COPY yolov10_train_val_test.py /app/ultralytics/
-
-### COMANDI PER LAVORARE ###
-# tmux new-session -s training
-# tmux attach-session -t training
-
-### scegliere tra le 2 opsioni
-# python3.9 yolov10_train_val_test.py -e 200 -b 32 -o SGD
-
-### uscire da tmux e dal container
-# uscire da tmux -> Ctrl + B, then D
-# uscire dal container Ctrl + P, then Ctrl + Q
-
-### verificare la presenza del container
-# docker ps
-
-### connettersi al container
-# docker attach my_container
-
-### generare immagine e avviare il container
-# docker build -t yolovx_image .
-# docker run -it --gpus '"device=2"' --name yolovx-gpu2 --shm-size=32g --env-file .env -v $(pwd)/output:/app/ultralytics/output yolovx_image /bin/sh
+COPY yolo_cam /app/ultralytics/yolo_cam/
