@@ -10,7 +10,7 @@
 7. [Contributing](#contributing)
 8. [License](#license)
 
----
+
 ## Introduction
 
 This repository is designed to provide an overview and guidance on using two versions of the YOLO (You Only Look Once) object detection framework: YOLOv8 and YOLOv10. YOLO is a state-of-the-art deep learning model for object detection, offering real-time detection capabilities across a variety of tasks. YOLOv8 builds on the innovations introduced by YOLOv5, incorporating improved model architecture and optimized detection for smaller objects. YOLOv10 represents the latest advancement in the YOLO series, featuring cutting-edge performance with enhanced training methodologies and support for diverse datasets.
@@ -19,7 +19,7 @@ In this project, two key datasets were used: the HRSID dataset, consisting of hi
 
 The repository also includes instructions for setting up the environment, using Docker for training, and utilizing notebooks for inference. Contributions and code modifications are encouraged, and the project is licensed under the MIT License.
 
----
+
 ## YOLO Versions
 
 ### YOLOv5
@@ -34,7 +34,7 @@ YOLOv5 is a highly efficient and versatile object detection model, continuing th
 
 The code for YOLOv5 can be found in the official repository [YOLOv5 GitHub Repository](https://github.com/ultralytics/yolov5).
 
-
+---
 ### YOLOv8
 
 YOLOv8 builds upon the advancements of YOLOv5 with further optimizations and new features aimed at improving performance in various object detection scenarios. It includes architectural changes and better handling of smaller objects.
@@ -47,7 +47,7 @@ YOLOv8 builds upon the advancements of YOLOv5 with further optimizations and new
 
 The code for YOLOv8 was taken from the reference repository [Ultralytics YOLOv8 GitHub Repository](https://github.com/ultralytics/ultralytics).
 
-
+---
 ### YOLOv10
 
 YOLOv10 represents the latest iteration in the YOLO series, featuring cutting-edge improvements in both model architecture and training techniques. This version is designed to provide state-of-the-art performance across a wide range of object detection tasks.
@@ -61,7 +61,7 @@ YOLOv10 represents the latest iteration in the YOLO series, featuring cutting-ed
 The code for YOLOv10 was taken from the reference repository [YOLOv10 GitHub Repository](https://github.com/THU-MIG/yolov10).
 
 
----
+
 ## Datasets
 
 ### HRSID Dataset
@@ -75,7 +75,7 @@ For each image chip, detailed information—including AIS data, SAR ship signatu
 
 Paper Link: [https://ieeexplore.ieee.org/document/8124929](https://ieeexplore.ieee.org/document/8124929)
 
----
+
 ## Getting Started with Docker
 
 The procedure described is for YOLOv8. The only difference for YOLOv10 is to start in the YOLOv10 folder.
@@ -169,7 +169,7 @@ Ctrl + B, then exit
 docker stop yolov8-container-ID
 ```
 
----
+
 ## Getting Started with Notebook
 
 ## YOLOv8 Training and Inference Optimization Notebook
@@ -331,6 +331,6 @@ This project is developed and maintained by the following authors:
 - 👩‍💻 [**Zazzarini Micol**](https://github.com/MicolZazzarini)
 - 👨‍💻 [**Fiorani Andrea**](https://github.com/125ade)
 
----
+
 ## License
 This project is licensed under the [MIT License](LICENSE) - Refer to the [LICENSE](LICENSE) file for more details.
