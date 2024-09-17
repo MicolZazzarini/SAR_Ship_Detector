@@ -52,7 +52,7 @@ The code for YOLOv10 was taken from the reference repository [YOLOv10 GitHub Rep
 ## Datasets
 
 ### HRSID Dataset
-The HRSID (High-Resolution Ship Detection) dataset is used for ship detection tasks, primarily in optical remote sensing images. It consists of 5600 high-resolution satellite images containing ships of various sizes and orientations. This dataset is ideal for an initial exploratory analysis, providing a broad range of ship images in different maritime environments. We used the HRSID dataset during the exploratory phase of our project to gain insights into the ship detection task before moving to more complex datasets.
+High resolution sar images dataset (HRSID) is a data set for ship detection, semantic segmentation, and instance segmentation tasks in high-resolution SAR images. This dataset contains a total of 5604 high-resolution SAR images and 16951 ship instances. HRSID dataset draws on the construction process of the Microsoft Common Objects in Context (COCO) datasets, including SAR images with different resolutions, polarizations, sea conditions, sea areas, and coastal ports. This dataset is a benchmark for researchers to evaluate their approaches. For HRSID, the resolution of SAR images is as follows: 0.5m, 1 m, and 3 m.
 
 Repository link: [HRSID GitHub Repository](https://github.com/chaozhong2010/HRSID).
 
