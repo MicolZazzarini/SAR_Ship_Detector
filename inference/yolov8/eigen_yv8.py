@@ -102,5 +102,3 @@ if __name__ == "__main__":
 
 
 # python eigen_yv8.py -w weights/yolov8s_200e_64b_SGD_best.pt -i img/OPTICAL/20240523_092652_29_2439_3B_Visual_clip_jpg.rf.ab11dcea908b5167aaba89fe35f46e35.jpg
-
-
