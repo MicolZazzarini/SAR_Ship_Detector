@@ -68,7 +68,7 @@ The code for YOLOv10 was taken from the reference repository [YOLOv10 GitHub Rep
 OpenSARShip 2.0 is a dataset comprising 34,528 image chips, cropped from 87 Sentinel-1 images in the interferometric wide swath (IW) mode. The dataset includes two IW mode products: single look complex (SLC) and ground range detected (GRD). Of the 87 Sentinel-1 images, 52 are from GRD and 35 from SLC, captured from 10 major global marine traffic areas in recent years. The spatial resolutions of these images range from 2.7 × 22 to 3.6 × 22 meters, and 20 × 22 meters. The images feature mixed VV and VH polarizations, and each ship image corresponds to an automatic identification system (AIS) message.
 For each image chip, detailed information—including AIS data, SAR ship signatures, and additional messages from the MarineTraffic website—is stored in an XML file called Ship.xml. Image sizes vary between 30 × 30 and 120 × 120 pixels. Additionally, four subfolders are provided for each Sentinel-1 SAR image, containing ship chips in different formats: original data, greyscale visualizations, pseudo-color visualizations, and calibrated data.
 
-Paper Link: [https://ieeexplore.ieee.org/document/8124929](https://ieeexplore.ieee.org/document/8124929)
+Paper Link: [https://www.mdpi.com/2072-4292/11/7/765](https://www.mdpi.com/2072-4292/11/7/765)
 
 
 ## Getting Started with Docker
