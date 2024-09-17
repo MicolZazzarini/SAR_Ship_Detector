@@ -64,11 +64,6 @@ The code for YOLOv10 was taken from the reference repository [YOLOv10 GitHub Rep
 
 ## Datasets
 
-### HRSID Dataset
-High resolution sar images dataset (HRSID) is a data set for ship detection, semantic segmentation, and instance segmentation tasks in high-resolution SAR images. This dataset contains a total of 5604 high-resolution SAR images and 16951 ship instances. HRSID dataset draws on the construction process of the Microsoft Common Objects in Context (COCO) datasets, including SAR images with different resolutions, polarizations, sea conditions, sea areas, and coastal ports. This dataset is a benchmark for researchers to evaluate their approaches. For HRSID, the resolution of SAR images is as follows: 0.5m, 1 m, and 3 m.
-
-Repository link: [HRSID GitHub Repository](https://github.com/chaozhong2010/HRSID).
-
 ### CAESAR Openship 2.0 SAR Dataset
 OpenSARShip 2.0 is a dataset comprising 34,528 image chips, cropped from 87 Sentinel-1 images in the interferometric wide swath (IW) mode. The dataset includes two IW mode products: single look complex (SLC) and ground range detected (GRD). Of the 87 Sentinel-1 images, 52 are from GRD and 35 from SLC, captured from 10 major global marine traffic areas in recent years. The spatial resolutions of these images range from 2.7 × 22 to 3.6 × 22 meters, and 20 × 22 meters. The images feature mixed VV and VH polarizations, and each ship image corresponds to an automatic identification system (AIS) message.
 For each image chip, detailed information—including AIS data, SAR ship signatures, and additional messages from the MarineTraffic website—is stored in an XML file called Ship.xml. Image sizes vary between 30 × 30 and 120 × 120 pixels. Additionally, four subfolders are provided for each Sentinel-1 SAR image, containing ship chips in different formats: original data, greyscale visualizations, pseudo-color visualizations, and calibrated data.
@@ -78,7 +73,7 @@ Paper Link: [https://ieeexplore.ieee.org/document/8124929](https://ieeexplore.ie
 
 ## Getting Started with Docker
 
-The procedure described is for YOLOv8. The only difference for YOLOv10 is to start in the YOLOv10 folder.
+The procedure described is for YOLOv8. The only difference for YOLOv10 is to start in the YOLOv10 folder and change few file's name.
 
 ### 0. Configuration
 
