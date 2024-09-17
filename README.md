@@ -61,7 +61,6 @@ OpenSARShip 2.0 is a dataset comprising 34,528 image chips, cropped from 87 Sent
 For each image chip, detailed information—including AIS data, SAR ship signatures, and additional messages from the MarineTraffic website—is stored in an XML file called Ship.xml. Image sizes vary between 30 × 30 and 120 × 120 pixels. Additionally, four subfolders are provided for each Sentinel-1 SAR image, containing ship chips in different formats: original data, greyscale visualizations, pseudo-color visualizations, and calibrated data.
 
 Paper Link: [https://ieeexplore.ieee.org/document/8124929](https://ieeexplore.ieee.org/document/8124929)
-Dataset Link: [http://opensar.sjtu.edu.cn/Data/Search](http://opensar.sjtu.edu.cn/Data/Search)
 
 ---
 ## Getting Started with Docker
