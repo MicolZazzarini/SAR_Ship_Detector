@@ -167,6 +167,14 @@ docker stop yolov8-container-ID
 
 ## Getting Started with Notebook
 
+To use the YOLO suite in a notebook environment, we utilized Google Colab for easy setup and access to resources. To begin, you'll need to upload the following files to your Colab environment:
+
+1. The notebook file (.ipynb).
+2. A zipped folder named `yolo_cam` containing the necessary scripts and models.
+3. The images on which you want to perform inference.
+
+Once the files are uploaded, you can unzip the folder and run the notebook to start using YOLO for object detection tasks.
+
 ## YOLOv8 Training and Inference Optimization Notebook
 
 This repository contains a Google Colab notebook demonstrating how to train a YOLOv8 model on a custom dataset, perform inference, and optimize the model using TensorRT for faster inference. The notebook follows these steps:
