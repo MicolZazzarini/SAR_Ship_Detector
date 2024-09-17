@@ -64,11 +64,21 @@ The code for YOLOv10 was taken from the reference repository [YOLOv10 GitHub Rep
 
 ## Datasets
 
-### CAESAR Openship 2.0 SAR Dataset
-OpenSARShip 2.0 is a dataset comprising 34,528 image chips, cropped from 87 Sentinel-1 images in the interferometric wide swath (IW) mode. The dataset includes two IW mode products: single look complex (SLC) and ground range detected (GRD). Of the 87 Sentinel-1 images, 52 are from GRD and 35 from SLC, captured from 10 major global marine traffic areas in recent years. The spatial resolutions of these images range from 2.7 × 22 to 3.6 × 22 meters, and 20 × 22 meters. The images feature mixed VV and VH polarizations, and each ship image corresponds to an automatic identification system (AIS) message.
-For each image chip, detailed information—including AIS data, SAR ship signatures, and additional messages from the MarineTraffic website—is stored in an XML file called Ship.xml. Image sizes vary between 30 × 30 and 120 × 120 pixels. Additionally, four subfolders are provided for each Sentinel-1 SAR image, containing ship chips in different formats: original data, greyscale visualizations, pseudo-color visualizations, and calibrated data.
+### SAR-Ship-Dataset
 
-Paper Link: [https://www.mdpi.com/2072-4292/11/7/765](https://www.mdpi.com/2072-4292/11/7/765)
+The SAR-Ship-Dataset contains 43,819 ship chips, each with a resolution of 256 × 256 pixels, and includes 59,535 ship instances in total. This dataset is created using 102 Chinese Gaofen-3 images and 108 Sentinel-1 images.
+
+- **Gaofen-3** images have spatial resolutions of 3 m, 5 m, 8 m, 10 m, and 25 m per pixel.
+- **Sentinel-1** images have spatial resolutions ranging from 1.7 × 4.3 to 3.6 × 4.9 and 20 × 22 meters.
+
+### Imaging Modes:
+- **Gaofen-3**: Ultrafine Strip-Map (UFS), Fine Strip-Map 1 (FSI), Full Polarization 1 (QPSI), Full Polarization 2 (QPSII), and Fine Strip-Map 2 (FSII).
+- **Sentinel-1**: S3 Strip-Map (SM), S6 SM, and IW-mode.
+
+Each ship chip is associated with an Extensible Markup Language (XML) file, which includes details such as the ship's location, the ship chip name, and the image dimensions.
+
+- **Paper Link**: [SAR-Ship-Dataset Paper](https://www.mdpi.com/2072-4292/11/7/765)
+- **Dataset Link**: [SAR-Ship-Dataset GitHub Repository](https://github.com/CAESAR-Radi/SAR-Ship-Dataset)
 
 
 ## Getting Started with Docker
