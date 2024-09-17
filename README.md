@@ -73,7 +73,7 @@ Paper Link: [https://www.mdpi.com/2072-4292/11/7/765](https://www.mdpi.com/2072-
 
 ## Getting Started with Docker
 
-The procedure described is for YOLOv8. The only difference for YOLOv10 is to start in the YOLOv10 folder and change few file's name.
+The procedure described is for YOLOv8. The only difference for YOLOv10 or YOLOv5 is to start in the YOLOv10/YOLOv5 folder and change few file's name.
 
 ### 0. Configuration
 
@@ -174,6 +174,8 @@ To use the YOLO suite in a notebook environment, we utilized Google Colab for ea
 3. The images on which you want to perform inference.
 
 Once the files are uploaded, you can unzip the folder and run the notebook to start using YOLO for object detection tasks.
+
+Below, you will find a detailed description of how to perform inference and optimization with YOLOv8. The notebooks for these processes can be found in the `inference` and `optimization` folders.
 
 ## YOLOv8 Training and Inference Optimization Notebook
 
