@@ -22,6 +22,19 @@ The repository also includes instructions for setting up the environment, using 
 ---
 ## YOLO Versions
 
+### YOLOv5
+
+YOLOv5 is a highly efficient and versatile object detection model, continuing the YOLO series' legacy with improvements in speed, accuracy, and ease of use. It is designed to deliver top-tier performance while being lightweight and adaptable to various applications and platforms.
+
+**Key Features:**
+- Fast and accurate object detection
+- Optimized for deployment on edge devices and cloud environments
+- User-friendly and easy to integrate into workflows
+- Supports transfer learning and fine-tuning for custom datasets
+
+The code for YOLOv5 can be found in the official repository [YOLOv5 GitHub Repository](https://github.com/ultralytics/yolov5).
+
+
 ### YOLOv8
 
 YOLOv8 builds upon the advancements of YOLOv5 with further optimizations and new features aimed at improving performance in various object detection scenarios. It includes architectural changes and better handling of smaller objects.
