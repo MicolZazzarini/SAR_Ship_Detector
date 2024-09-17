@@ -57,9 +57,11 @@ High resolution sar images dataset (HRSID) is a data set for ship detection, sem
 Repository link: [HRSID GitHub Repository](https://github.com/chaozhong2010/HRSID).
 
 ### CAESAR Openship 2.0 SAR Dataset
-The CAESAR Openship 2.0 SAR (Synthetic Aperture Radar) dataset is a large-scale collection of SAR images designed for ship detection and classification. It contains over 80,000 labeled images of ships captured in various conditions, making it suitable for advanced object detection tasks. We used this dataset for the main training phase of our models, as its complexity and detail allowed us to improve accuracy significantly. The SAR data offers resilience to challenging weather conditions, enhancing real-world applicability in maritime ship detection.
+OpenSARShip 2.0 is a dataset comprising 34,528 image chips, cropped from 87 Sentinel-1 images in the interferometric wide swath (IW) mode. The dataset includes two IW mode products: single look complex (SLC) and ground range detected (GRD). Of the 87 Sentinel-1 images, 52 are from GRD and 35 from SLC, captured from 10 major global marine traffic areas in recent years. The spatial resolutions of these images range from 2.7 × 22 to 3.6 × 22 meters, and 20 × 22 meters. The images feature mixed VV and VH polarizations, and each ship image corresponds to an automatic identification system (AIS) message.
+For each image chip, detailed information—including AIS data, SAR ship signatures, and additional messages from the MarineTraffic website—is stored in an XML file called Ship.xml. Image sizes vary between 30 × 30 and 120 × 120 pixels. Additionally, four subfolders are provided for each Sentinel-1 SAR image, containing ship chips in different formats: original data, greyscale visualizations, pseudo-color visualizations, and calibrated data.
 
-Repository link: [CAESAR Openship 2.0 SAR GitHub Repository](https://github.com/CAESAR/Openship-2.0).
+Paper Link: [https://ieeexplore.ieee.org/document/8124929](https://ieeexplore.ieee.org/document/8124929)
+Dataset Link: [http://opensar.sjtu.edu.cn/Data/Search](http://opensar.sjtu.edu.cn/Data/Search)
 
 ---
 ## Getting Started with Docker
